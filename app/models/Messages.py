@@ -54,7 +54,7 @@ class Message(models.Model):
 
     class Meta:
         permissions = (("can_write_msg", "Can write messages"),)
-        app_label = 'lm'
+        app_label = 'app'
         verbose_name = 'MENSAGEM'
         verbose_name_plural = 'MENSAGENS'
 

@@ -7,7 +7,7 @@ class UserProfile(AbstractUser):
     is_reviewer = models.BooleanField(default=False)
 
     class Meta:
-        app_label = 'lm'
+        app_label = 'app'
         verbose_name = 'Usuários & Perfis'
         verbose_name_plural = 'Usuários & Perfis'
 

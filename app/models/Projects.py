@@ -1,11 +1,13 @@
 from django.db import models
+from django.utils import timezone
+from django.utils.html import escape, mark_safe
+
 from uuid import uuid4
+
 from .Clients import Client
 from .Sequences import Sequence
 from .Profiles import UserProfile
 
-from django.utils import timezone
-from django.utils.html import escape, mark_safe
 
 
 class Project(models.Model):
@@ -30,7 +32,7 @@ class Project(models.Model):
     is_project_approved = models.BooleanField(blank=True, default=False, verbose_name="Aprovado?")
 
     class Meta:
-        app_label = 'lm'
+        app_label = 'app'
         verbose_name = 'PROJETO'
         verbose_name_plural = 'PROJETOS'
         permissions = (('can_review_project', 'Pode revisar projetos'),)

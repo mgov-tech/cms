@@ -11,7 +11,7 @@ class SequenceGroups(models.Model):
     age_group = models.CharField(max_length=50)
 
     class Meta:
-        app_label = 'lm'
+        app_label = 'app'
         verbose_name = 'Grupos de idade'
         verbose_name_plural = 'Grupos de idade'
 
@@ -24,7 +24,7 @@ class SequenceTheme(models.Model):
     theme = models.CharField(max_length=50)
 
     class Meta:
-        app_label = 'lm'
+        app_label = 'app'
         verbose_name = 'Tema'
         verbose_name_plural = 'Temas'
 
@@ -37,7 +37,7 @@ class SequenceSubTheme(models.Model):
     sub_theme = models.CharField(max_length=50)
 
     class Meta:
-        app_label = 'lm'
+        app_label = 'app'
         verbose_name = 'Subtema'
         verbose_name_plural = 'Subtemas'
 
@@ -71,7 +71,7 @@ class Sequence(models.Model):
     library = models.CharField(max_length=10, blank=True, choices=PROJECT_TYPE, verbose_name="Biblioteca")
 
     class Meta:
-        app_label = 'lm'
+        app_label = 'app'
         verbose_name = 'SEQUÊNCIA'
         verbose_name_plural = 'SEQUÊNCIAS'
 
