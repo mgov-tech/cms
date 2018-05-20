@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {% for error in form.non_field_errors %}
+        <p{% if forloop.last %} class="mb-0"{% endif %}>{{ error }}</p>
+      {% endfor %}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endif %}
+  <div class="row">
+    <div class="col-lg-12 col-md-6 col-sm-8 col-12" style="background-color:#f8f8f8">
+      <h2>Acessar o sistema</h2>
+        <hr />
+      <form method="post" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {{ form.username|bootstrap }}
+        {{ form.password|bootstrap }}
+          <br />
+        <button type="submit" class="btn btn-primary">Entrar</button>
+          <hr />
+      </form>
+    </div>
+  </div>
+{% endblock %}

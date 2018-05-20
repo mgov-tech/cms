@@ -1,0 +1,99 @@
+{% load static %}<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Impactcom | Gestão dos Conteúdos{% endblock %}</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Clicker+Script" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+    {% if user.is_authenticated and user.is_creator %}
+      <link rel="stylesheet" type="text/css" href="{% static 'css/creators.css' %}">
+    {% else %}
+      <link rel="stylesheet" type="text/css" href="{% static 'css/reviewers.css' %}">
+    {% endif %}
+  </head>
+  <body oncontextmenu="return false">
+
+      <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+                 <a class="navbar-brand"  href="{% url 'home' %}">
+                    <img src="{% static 'logo-novo-05.png' %}" alt="MGov Logo" style="max-width:75px;" />
+                    Gestão das Bibliotecas
+                  {% if user.is_authenticated %}
+                    {% if user.is_creator %}
+                      <span class="icon-feather" data-toggle="tooltip" data-placement="right" title="Creator profile"></span>
+                    {% else %}
+                      <span class="icon-graduation-cap" data-toggle="tooltip" data-placement="right" title="Reviewer profile"></span>
+                    {% endif %}
+                  {% endif %}
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+              <!-- <li class="nav-item"><a href="" class="nav-link">Projetos</a></li>
+              <li class="nav-item"><a href="" class="nav-link">Sequências</a></li> -->
+              <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Sair</a></li>
+
+            {% else %}
+              <li class="nav-item"><a href="{% url 'login' %}" class="nav-link">Log In</a></li>
+            {% endif %}
+          </ul>
+
+          {% if user.is_authenticated %}
+      		  <!-- <form class="form-inline mt-2 mt-md-0" action="." %}" method="get" placeholder="Search" aria-label="Search">
+              <input type="text" name="q" value="" class="form-control mr-sm-2" id="q">
+              <input type="submit" value="Search Tasks" class="btn btn-outline-success my-2 my-sm-0"> -->
+            </form>
+          {% endif %}
+
+        </div>
+      </nav>
+    </header>
+
+      {% block side_content %}{% endblock %}
+
+      <main role="main" class="container">
+
+      {% block content %}{% endblock %}
+
+      </main>
+
+
+    <footer class="footer">
+      <div class="container">
+            {% if user.is_authenticated %}Acessando como <span class="badge badge-dark">{{ user.username }}</span>{% endif %}
+            | © MGov, {% now "Y" %} - Todos os direitos reservados.
+        </div>
+      </div>
+    </footer>
+
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="//rubaxa.github.io/Sortable/Sortable.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      })
+    </script>
+    <script type="text/javascript">
+     $('body').bind('copy paste cut drag drop', function (e) {
+            e.preventDefault();
+     });
+    </script>
+
+
+    {% block javascript %}{% endblock %}
+  </body>
+
+</html>
