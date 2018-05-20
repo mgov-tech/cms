@@ -32,7 +32,7 @@ class ReviewerSignUpView(CreateView):
 
 @method_decorator([login_required, reviewer_required], name='dispatch')
 class ProjectListView(generic.TemplateView):
-    template_name = 'lm/reviewers/reviewer_list.html'
+    template_name = 'app/reviewers/reviewer_list.html'
 
     _context = {}
 
@@ -45,7 +45,7 @@ class ProjectListView(generic.TemplateView):
 @method_decorator([login_required, reviewer_required], name='dispatch')
 class Playground(generic.TemplateView):
     """classe apenas para testar algumas coisas no django"""
-    template_name = 'lm/reviewers/playground.html'
+    template_name = 'app/reviewers/playground.html'
     _context = {}
 
     def get(self, request):
@@ -74,7 +74,7 @@ class ProjectReviewEdit(generic.TemplateView):
     """a ideia desta view é renderizar as sequências associadas a um projeto,
        além de permtir que o usuário faça comentários/autilize comentários sobre cada sequencia
     """
-    template_name = 'lm/reviewers/do_project_review.html'
+    template_name = 'app/reviewers/do_project_review.html'
     _context = {}
 
     def get(self, request, project_number):
@@ -95,7 +95,7 @@ class ProjectReviewEdit(generic.TemplateView):
 
 @method_decorator([login_required, reviewer_required], name='dispatch')
 class ProjectSequenceReviewEdit(generic.TemplateView):
-    template_name = 'lm/reviewers/write_project_review.html'
+    template_name = 'app/reviewers/write_project_review.html'
     _context = {}
 
     def get(self, request, project_number, seq_number):

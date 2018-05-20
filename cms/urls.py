@@ -1,4 +1,4 @@
-"""cms URL Configuration
+"""impactcom_libs URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -14,8 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from django.conf.urls import url
+from django.conf import settings
+
+from django.contrib.auth import views as auth_views
+
+from app.views import creators, reviewers, app
+
 
 urlpatterns = [
+    path('', include('app.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', app.SignUpView.as_view(), name='signup'),
+    path('accounts/signup/reviewers/', reviewers.ReviewerSignUpView.as_view(), name='reviewer_signup'),
+    path('accounts/signup/creator/', creators.CreatorsSignUpView.as_view(), name='creator_signup'),
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
-]
+] 
+

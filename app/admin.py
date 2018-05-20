@@ -5,7 +5,7 @@ from django.forms import ModelForm
 from guardian.admin import GuardedModelAdmin
 
 # Register your models here.
-from lm.models import *
+from app.models import *
 
 # - * - * - * -
 # MENSAGEM

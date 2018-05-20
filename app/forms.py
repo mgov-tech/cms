@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.forms.utils import ValidationError
 
-from lm.models import ProjectReview, ProjectSequences, Project
+from app.models import ProjectReview, ProjectSequences, Project
 
 
 class CreatorSignUpForm(UserCreationForm):

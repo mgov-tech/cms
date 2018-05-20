@@ -6,7 +6,7 @@ from django.views.generic import View
 from app.views import clients, reviewers, creators, app
 
 urlpatterns = [
-        path('', lm.home, name='home'),
+        path('', app.home, name='home'),
 
         path('r/', include(([
             path('', reviewers.ProjectListView.as_view(), name='projectreview_list'),
