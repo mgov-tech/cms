@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load guardian_tags %}
+{% block content %}
+
+    <form method="POST">
+    {% csrf_token %}
+
+    {% for p in projects %}
+    <div class="d-block p-2 bg-primary text-white" style="font-family: 'GothamRnd-Bold';">{{ p.project_name }}</div>
+
+        <div class="row">
+
+        </div>
+
+        {% for s in project_sequences %}
+
+            <hr style="border-top: dotted 1px;" />
+            SEQUÊNCIA {{ forloop.counter }} {{ s.desc }}<br>
+            <div class="row">
+            {%  for m in s.messages.all %}
+                <div class="col-xm-3 col-sm-3 col-lg-3">
+                    <div class="card" style="">
+                        <div class="card-body">
+                                <h5 class="card-title">
+                                {% if m.category == "FA" %}
+                                    <span class="badge badge-primary">FATO</span>
+                                {% endif %}
+                                {% if m.category == "AT" %}
+                                    <span class="badge badge-primary">ATIVIDADE</span>
+                                {% endif %}
+                                {% if m.category == "IT" %}
+                                    <span class="badge badge-primary">INTERAÇÃO</span>
+                                {% endif %}
+                                {% if m.category == "RE" %}
+                                    <span class="badge badge-primary">REFORÇO</span>
+                                {% endif %}
+                                {% if m.category == "IN" %}
+                                    <span class="badge badge-primary">INTRODUÇÃO</span>
+                                {% endif %}
+                                {% if m.category == "XX" %}
+                                    <span class="badge badge-primary">OUTRO</span>
+                                {% endif %}
+                                </h5>
+                                <p class="card-text">
+                                    {{ m.content }}
+                                </p>
+                                <p class="card-title">
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Comentar</button></p>
+                        </div> {#  card body #}
+                    </div> {# carrd #}
+                </div> {# col-xm-3 #}
+            {% empty %}
+                <spam>NO MESSAGES</spam>
+            {% endfor %}
+            </div>
+            <br>
+        {% empty %}
+            <spam>NO SEQUENCES</spam>
+        {% endfor %}
+    {% empty %}
+        <spam>NO PROJECTS</spam>
+    {% endfor %}
+
+    <hr>
+
+    </form>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

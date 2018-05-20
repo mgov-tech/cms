@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Gestão das bibliotecas">
+    <meta name="author" content="Tiago Maluta">
+
+    {% load static %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'lm/css/style.css' %}" />
+
+</head>
+<body>
+
+{% include 'lm/lm_header.html' %}
+
+<main role="main" class="container">
+
+<div class="container">
+  <div class="page-header">
+      <h1>Projet: <span style="color: #ff11aa;">{{ project.project_name }}</span></h1>
+  </div>
+</div>
+
+
+
+    {% for sequence in project.sequences.all %}
+    <br>
+    <div class="row">
+        <div class="col-sm-12 ">
+            <h3>Séquence #{{ forloop.counter }}</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xm-3 col-sm-3">
+            <div class="card" style="">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="badge badge-primary">Fait motivateur</span></h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <p class="card-text">{{ sequence.fact.content }}</p>
+                     <!--<a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xm-3 col-sm-3 col-lg-3">
+
+            <div class="card" style="">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="badge badge-primary">Activité</span></h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <p class="card-text">{{ sequence.activity.content }}</p>
+                    <!--<a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xm-3 col-sm-3 col-lg-3">
+            <div class="card" style="">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="badge badge-primary">Interaction</span></h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <p class="card-text">{{ sequence.interaction.content }}</p>
+                    <!--<a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xm-3 col-sm-3 col-lg-3">
+            <div class="card" style="">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="badge badge-primary">Renforcement</span></h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <p class="card-text">{{ sequence.reinforcement.content }}</p>
+                    <!--<a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>-->
+                </div>
+           </div>
+        </div>
+    </div><!-- row -->
+    <br>
+    <div class="row">
+        <div class="col-sm-12 center-block">
+              <a href="{% url 'project-sequence' project.prj_id sequence.seq_id %}" class="btn btn-primary">Réviser</a>
+        </div>
+    </div>
+        <hr style="border-top: dashed 3px;" />
+{% empty %}
+No sequences yet.
+{% endfor %}
+<!-- -->
+
+
+</main>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

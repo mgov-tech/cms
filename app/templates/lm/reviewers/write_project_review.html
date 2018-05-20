@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load guardian_tags %}
+{% load bootstrap %}
+
+{% block content %}
+
+        <div class="row">
+            <div class="col-xm-4 col-sm-4 col-lg-4"><hr></div>
+
+            <div class="col-xm-4 col-sm-4 col-lg-4"><p align="center"><strong>Adicionar um comentário</strong></p></div>
+
+            <div class="col-xm-4 col-sm-4 col-lg-4"><hr></div>
+
+
+        </div>
+
+        <div class="row">
+           <div class="col-xm-6 col-sm-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-family: GothamRnd-Bold; font-size:12px;">
+                                <span class="badge badge-primary">FATO</span>
+                            </h5>
+                            <p class="card-text" align="left" style="font-size:14px;">
+                                           {{ sequence_content.sequence.get_fact  }}
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-family: GothamRnd-Bold; font-size:12px;">
+                                <span class="badge badge-primary">Atividade</span>
+                            </h5>
+                            <p class="card-text" align="left" style="font-size:14px;">
+                                           {{ sequence_content.sequence.get_activity  }}
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-family: GothamRnd-Bold; font-size:12px;">
+                                <span class="badge badge-primary">Interação</span>
+                            </h5>
+                            <p class="card-text" align="left" style="font-size:14px;">
+                                           {{ sequence_content.sequence.get_interaction  }}
+                            </p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card">
+
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-family: GothamRnd-Bold; font-size:12px;">
+                                <span class="badge badge-primary">Reforço</span>
+                            </h5>
+                            <p class="card-text" align="left" style="font-size:14px;">
+                                           {{ sequence_content.sequence.get_reinforcement  }}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+           </div>
+           <div class="col-xm-6 col-sm-6 col-lg-6">
+                <form method="POST">
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                <button type="submit" class="btn btn-primary">Salvar e voltar</button>
+                <a href="{% url 'reviewers:do_project_review' project_number %}" class="btn btn-danger">Voltar</a>
+                </form>
+           </div>
+        </div>
+        <hr>
+        <div class="row">
+            Outros comentários:
+            <ul>
+            {% for i in sequence_content.project_reviews.all %}
+                <li>{{ i.project_reviews }}</li>
+            {% empty %}
+                 Não há comentários para esta sequência.
+            {% endfor %}
+            </ul>
+        </div>
+
+
+{% endblock %}

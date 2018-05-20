@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load guardian_tags %}
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Projetos</li>
+    </ol>
+  </nav>
+  <h2 class="mb-3">Meus projetos para revisão</h2>
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Projeto</th>
+          <th>Biblioteca</th>
+          <th>Sequências</th>
+          <th>Revisões</th>
+          <th>Concluído</th>
+        </tr>
+      </thead>
+      <tbody>
+      <div id="simpleList" class="list-group">
+
+        {% for p in projects %}
+            {% get_obj_perms request.user for p as "project_perms" %}
+            {%  if "can_review_project" in project_perms %}
+            <tr>
+            <td class="align-middle">{{ p.project_name }}</td>
+            <td class="align-middle">{{ p.get_project_badge }}</td>
+            <td class="align-middle">{{ p.sequences_count }}</td>
+            <td class="align-middle">
+
+                {% if p.is_project_approved == False %}
+                    <a href="{% url 'reviewers:do_project_review' p.prj_id %}" class="btn btn-primary">Revisar</a>
+                {% else %}
+                    <a href="{% url 'reviewers:do_project_review' p.prj_id %}" class="btn btn-success">Revisar</a>
+                {% endif %}
+            </td>
+            <td class="align-right">
+                {% if p.is_project_approved == True %}
+                <img src="{% static 'approved.jpg' %}" alt="approved" style="max-width:35px;" />
+                {% endif %}
+            </td>
+            </tr>
+            {% endif %}
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="5">Nenhum projeto criado</td>
+          </tr>
+        {% endfor %}
+      </div>
+
+      </tbody>
+</table>
+  </div>
+
+{% endblock %}

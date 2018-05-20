@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h2></h2>
+  <p class="lead" align="justify">
+      Este é o ambiente de gestão das bibliotecas de conteúdo do ImpactCom. Para acessar esta página você precisa ser um cliente e/ou parceiro da MGov. Se este é seu caso, faça seu <a href="{% url 'login' %}">login.</a>
+  </p>
+  <!-- <a href="{% url 'reviewer_signup' %}">student account</a> or a <a href="{% url 'creator_signup' %}">teacher account</a> -->
+  <hr>
+  <p align="center">
+  <img src="{% static 'eduqmais_home.png' %}" />
+  </p>
+  <p align="justify">Para conhecer mais sobre da MGov e como ela já impactou mais de 170.000 famílias com o Eduqmais e o Poupemais, clique <a href="http://mgovbrasil.com.br/">aqui</a></p>
+{% endblock %}

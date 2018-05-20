@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Gestão das bibliotecas">
+    <meta name="author" content="Tiago Maluta">
+
+    {% load static %}
+    {% load i18n %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'lm/css/style.css' %}" />
+
+</head>
+<body>
+
+{% include 'lm/lm_header.html' %}
+
+<spam>xx {{ perms.lm.clients.can_view }} xx</spam>
+
+{% if not perms.lm.clients.can_view %}
+{% for group in user.groups.all %}
+<div class="container">
+      <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item active">Clients</li>
+      </ol>
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>#</th>
+            <th>Nome</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for client in clients %}
+            <tr>
+              <td>
+                {{ client.id }}
+              </td>
+                {% if group.name == "CA" %}
+              <td class="align-middle"><small class="text-muted d-block">{{ client.name }}</small></td>
+                {% endif %}
+            </tr>
+          {% empty %}
+                None
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endfor %}
+{% endif %}
+
+</main>
+</body>
+</html>

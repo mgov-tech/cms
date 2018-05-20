@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load guardian_tags %}
+{% load bootstrap %}
+
+{% block side_content %}
+
+
+{% endblock %}
+
+
+{% block content %}
+
+
+      <div class="row" style="font-family: 'GothamRnd-Bold';">
+          <div class="col-sm"></div>
+          <div class="col-sm"></div>
+          <div class="col-sm" style="background-color:#f8f9fa;">
+              <center><form method="POST">{% csrf_token %}Aprovar {{ form.is_project_approved }}&nbsp;&nbsp;<button type="submit" class="btn btn-warning">Submeter ⇵</button></form></center>
+          </div>
+      </div>
+      <br>
+        <div class="row">
+
+        </div>
+
+    <div class="table-responsive">
+    <div id="simpleList" class="list-group">
+      <table class="table" id="tasktable">
+        <tr class="nodrop">
+          <th>#</th>
+          <th style="font-size: 10px; font-family: 'GothamRnd-Light'; vertical-align: middle;">
+              {% if p.library == 'PM' %}
+              TEMA/SUBTEMA
+              {% else %}
+              CONCEITOS/CONTEÚDOS
+              {% endif %}</th>
+          <th><center>FATO</center></th>
+          <th><center>ATIVIDADE</center></th>
+          <th><center>INTERAÇÃO</center></th>
+          <th><center>REFORÇO</center></th>
+        </tr>
+        {% for s in p.sequence_ordered %}
+            {# ------------------------------------- #}
+            <tr>
+            <td><span class="badge badge-primary badge-pill">{{ forloop.counter }}</span></td>
+            <td colspan="5"><span class="badge badge-info">{{ s.sequence.theme }}</span>
+            <span class="badge badge-info">{{ s.sequence.subtheme }}</span>
+            </td>
+            <tr>
+            <tr onclick="window.location={{ s.sequence.seq_id }}" style="cursor: pointer;"
+                onmouseover='this.style.textDecoration="none"; this.style.backgroundColor="#f8f9fa"'
+                onmouseout='this.style.textDecoration="none"; this.style.backgroundColor="white"'>
+            <td></td>
+            <td></td>
+            <td><p align="justify">{{ s.sequence.get_fact }}</p></td>
+            <td><p align="justify">{{ s.sequence.get_activity }}</p></td>
+            <td><p align="justify">{{ s.sequence.get_interaction }}</p></td>
+            <td><p align="justify">{{ s.sequence.get_reinforcement }}</p></td>
+
+            </tr>
+
+            {# ------------------------------------- #}
+        {% empty %}
+            <spam>NO SEQUENCES</spam>
+        {% endfor %}
+        </table>
+    </div>
+    </div>
+    <hr>
+
+
+
+<div class="row" style="font-family: 'GothamRnd-Bold';">
+          <div class="col-sm"></div>
+          <div class="col-sm"></div>
+          <div class="col-sm" style="background-color:#f8f9fa;">
+              <center><form method="POST">{% csrf_token %}Aprovar {{ form.is_project_approved }}&nbsp;&nbsp;<button type="submit" class="btn btn-warning">Submeter ⇵</button></form></center>
+          </div>
+      </div>
+
+
+<!-- <a class="btn" data-toggle="modal" href="#exampleModalLong" >Launch Modal</a> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Confidencialidade</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p>Essa página, as interações propostas e seus anexos são de propriedade da MGov Brasil.</p>
+          <p>O conteúdo é destinado exclusivamente ao seu destinatário e pode conter informações confidenciais, protegidas
+              por sigilo profissional ou cujo uso e divulgação sejam proibidos por lei.</p>
+          <p>O uso ou reprodução não autorizados de tais informações é proibido e está sujeito às penalidades cabíveis.</p>
+      </div>
+      <div class="modal-footer">
+        <a role="button" href="http://mgovbrasil.com.br" class="btn btn-danger">Sair</a>
+        <button type="button" class="btn btn-info" data-dismiss="modal" data-dismiss="modal">Concordo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#exampleModalLong').modal({backdrop: 'static', keyboard: false});
+    });
+</script>
+
+{% endblock %}

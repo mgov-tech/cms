@@ -1,0 +1,13 @@
+
+{% extends "admin/base.html" %}
+
+{% block title %} Sequence page {% endblock %}
+{% block content %}
+
+<h1>FATOS</h1>
+{% for seq in data %}
+    <h3>{{ seq.fact }}</h3>
+    <hr>
+{% endfor %}
+
+{% endblock %}

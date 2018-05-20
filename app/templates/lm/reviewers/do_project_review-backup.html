@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load guardian_tags %}
+{% load bootstrap %}
+
+{% block side_content %}
+
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="d-block p-2 bg-primary text-white" style="font-family: 'GothamRnd-Bold';"><p align="">{{ p.project_name }}
+    <button style="font-size:12px;" class="btn btn-default">Aprovar</button></p></div>
+
+    <br>
+        <div class="row">
+        {{ p }}
+        </div>
+
+    <div class="table-responsive">
+    <div id="simpleList" class="list-group">
+      <table class="table" id="tasktable">
+        <tr class="nodrop">
+          <th>#</th>
+          <th>
+              {{ p }}
+              {% if p.library == 'EM' %}
+              TEMA / SUBTEMA
+              {% else %}
+              CONCEITOS / CONTEÚDOS
+              {% endif %}
+          </th>
+          <th>FATO</th>
+          <th>ATIVIDADE</th>
+          <th>INTERAÇÃO</th>
+          <th>REFORÇO</th>
+        </tr>
+        {% for s in p.sequences.all %}
+            {# ------------------------------------- #}
+            <tr class="accordion-toggle"  data-toggle="collapse" data-target="#a{{ forloop.counter }}">
+            <td><span class="badge badge-primary badge-pill">{{ forloop.counter }}</span></td>
+            <td><span class="badge badge-info">{{ s.theme }}</span>
+            <span class="badge badge-info">{{ s.subtheme }}</span>
+            </td>
+
+            <td><p align="justify">{{ s.get_fact }}</p></td>
+            <td><p align="justify">{{ s.get_activity }}</p></td>
+            <td><p align="justify">{{ s.get_interaction }}</p></td>
+            <td><p align="justify">{{ s.get_reinforcement }}</p></td>
+
+            </tr>
+            <tr style="border: 0px;" bgcolor="#ededed">
+                <td></td>
+                <td colspan="5">
+                <div class="collapse in" id="a{{ forloop.counter }}">
+                    <div class="card card-body">
+                        <form action="." name="" method="post">
+                            {% csrf_token %}
+                            Escreva seu comentário
+                            {{ form.project_reviews|bootstrap }}
+                            Se você quiser destacar alguma das mensagens (opcional):<br>
+                            {{ form.is_fact_flagged|bootstrap }}
+                            {{ form.is_activity_flagged|bootstrap }}
+                            {{ form.is_interaction_flagged|bootstrap }}
+                            {{ form.is_reinforcement_flagged|bootstrap }}
+                        <button type="submit" value="Submit" class="btn btn-primary">Enviar</button>
+                    </form>
+                  </div>
+                </div>
+                </td>
+            </tr>
+
+
+            {# ------------------------------------- #}
+        {% empty %}
+            <spam>NO SEQUENCES</spam>
+        {% endfor %}
+        </table>
+    </div>
+    </div>
+    <hr>
+
+{% endblock %}

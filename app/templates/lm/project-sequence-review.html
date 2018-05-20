@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Gestão das bibliotecas">
+    <meta name="author" content="Tiago Maluta">
+
+    {% load static %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'lm/css/style.css' %}" />
+
+</head>
+<body>
+
+{% include 'lm/lm_header.html' %}
+
+<main role="main" class="container">
+
+<div class="container">
+  <div class="page-header">
+      <h1>Projeto: <span style="color: #ff11aa;">{{ project.project_name }}</span></h1>
+  </div>
+  <hr>
+</div>
+    <br>
+    <div class="row">
+    <div class="col-sm-12 ">
+        <h3>Ajouter un commentaire sur cette séquence</h3>
+        Thèm: <span class="badge badge-warning">{{ sequence.theme.theme }}</span></h3><br>
+        Sous-thème: <span class="badge badge-warning">{{ sequence.subtheme.sub_theme }}</span></h3><br><br>
+
+    </div>
+    </div>
+    <form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-sm-12">
+        {{ form.validator_name }}
+        {{ form.what_sequence }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xm-12 col-sm-12 col-lg-12">
+            <div class="card" style="">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="badge badge-primary">Fait motivateur</span></h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <p class="card-text">{{ sequence.fact.content }}</p>
+                    <div class="form-check">
+                    {{ form.is_fact_checked }}
+                    {{ form.is_fact_checked.label_tag }}
+                </div>
+                    {{ form.reviews_fact }}
+                     <!--<a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+
+        <div class="col-xm-12 col-sm-12 col-lg-12">
+
+            <div class="card" style="">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="badge badge-primary">Activité</span></h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <p class="card-text">{{ sequence.activity.content }}</p>
+                    <div class="form-check">
+                    {{ form.is_activity_checked }}
+                    {{ form.is_activity_checked.label_tag }}
+                </div>
+                    {{ form.reviews_activity }}
+                    <!--<a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+
+        <div class="col-xm-12 col-sm-12 col-lg-12">
+            <div class="card" style="">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="badge badge-primary">Interaction</span></h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <p class="card-text">{{ sequence.interaction.content }}</p>
+                    <div class="form-check">
+                    {{ form.is_interaction_checked }}
+                    {{ form.is_interaction_checked.label_tag }}
+                </div>
+                    {{ form.reviews_interaction }}
+                    <!--<a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>-->
+                </div>
+            </div>
+        </div>
+        <div class="col-xm-12 col-sm-12 col-lg-12">
+            <div class="card" style="">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="badge badge-primary">Renforcement</span></h5>
+                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                    <p class="card-text">{{ sequence.reinforcement.content }}</p>
+                    <div class="form-check">
+                    {{ form.is_reinforcements_checked }}
+                    {{ form.is_reinforcements_checked.label_tag }}
+                </div>
+                    {{ form.reviews_reinforcements }}
+                    <!--<a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>-->
+                </div>
+           </div>
+        </div>
+    </div><!-- row -->
+    <div class="row">
+        <div class="col-sm-12 center-block">
+              <button type="submit" class="btn btn-primary float-sm-right">Save</button>
+        </div>
+    </div></form>
+<!-- -->
+<hr>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        {% for s in project.sequences.all  %}
+            {{ foorloop.counter }}
+            <li class="breadcrumb-item"><a href="{% url 'project-sequence' project.prj_id s.seq_id %}">Seq {{ forloop.counter }}</a></li>
+        {% endfor %}
+    </ol>
+</nav>
+
+
+</main>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

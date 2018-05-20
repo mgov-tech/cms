@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load guardian_tags %}
+{% load bootstrap %}
+
+{% block content %}
+
+<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Add
+</button>
+
+{% if success == True %}
+<h3>gravação com sucesso :)</h3><br>
+<h4>Projeto gravado: <span style="color:red">{{ text }}</span></h4><br>
+{% else %}
+{% endif %}
+
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <form action="" name="add_project" method="post">
+        {% csrf_token %}
+        {{ form.client|bootstrap }}
+        {{ form.project_name|bootstrap }}
+        {{ form.library|bootstrap }}
+        <input type="submit" value="Submit" />
+    </form>
+  </div>
+</div>
+
+<br>
+<br>
+<h4>Projetos</h4>
+
+{% for p in projects %}
+    {{ p.project_name }} <br>
+{% empty %}
+{% endfor %}
+
+
+{% endblock %}

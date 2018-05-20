@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Projetos</li>
+    </ol>
+  </nav>
+  <h2 class="mb-3">Meus projetos</h2>
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Projeto</th>
+          <th>Biblioteca</th>
+          <th>Sequências</th>
+          <th>Revisões</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in projects %}
+          <tr>
+            <td class="align-middle">{{ p.project_name }}</td>
+            <td class="align-middle">{{ p.get_project_badge }}</td>
+            <td class="align-middle">{{ p.sequences_count }}</td>
+            <td class="align-middle">
+             <a href="{% url 'creators:project_reviews' 1 %}" class="btn btn-primary">Ver revisões</a>
+            </td>
+            <td class="text-right">
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="5">Nenhum projeto criado</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+</table>
+
+
+{% endblock %}

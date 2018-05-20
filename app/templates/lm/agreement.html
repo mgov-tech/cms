@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    {% load static %}
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+{% include 'lm/lm_header.html' %}
+
+<main role="main" class="container">
+    <div class="row">
+      <div class="two column">
+        <h1>ACEITE PARA PARTICIPAR DA VALIDAÇÃO DE CONTEÚDOS</h1>
+        <h2>MGov - Bibliotecas de Conteúdo</h2>
+        <hr>
+        <p>
+          <strong>
+            Resumo: This is an MIT research project to compare how different text
+            visualizations help researchers understand conversations in online media.
+            We will not track who you are, and any results publications will refer to
+            results in aggregate.
+          </strong>
+        </p>
+        <hr>
+        <div class="consent">
+          <p>
+            You have been asked to participate in a research study conducted by Ethan
+            Zuckerman, Rahul Bhargava (M.S.), and  Rebekah Bell from the MIT Media Lab
+            at the Massachusetts Institute of Technology (M.I.T.). The purpose of this
+            study is to compare the performance of different text visualizations used
+            in the Media Cloud suite of web-based tools for analyzing online media.
+            You were selected as a possible participant in this study because of your
+            pre-existing interest in Media Cloud, visualization, or web-based research
+            tools. You should read the information below, and ask questions about
+            anything you do not understand, before deciding whether or not to
+            participate.
+          </p>
+          <ul>
+            <li>
+              This survey is voluntary. You have the right not to answer any question,
+              and to stop the survey at any time or for any reason.  We expect that
+              the survey will take 15 to 30 minutes.
+            </li>
+            <li> We do not foresee any potential risks of this research study. </li>
+            <li>
+              You could walk away from this study with a more critical mindset when
+              using text visualizations.
+            </li>
+            <li> You will not be compensated for taking this survey. </li>
+          </ul>
+          <p> This project will be completed by June 1, 2018. </p>
+          <p>
+            Any information that is obtained in connection with this study and that
+            can be identified with you will remain confidential and will be disclosed
+            only with your permission or as required by law. In addition, your
+            information may be reviewed by authorized MIT representatives to ensure
+            compliance with MIT policies and procedures.
+          </p>
+          <p>
+            If you have any questions or concerns about the research, please feel
+            free to contact Ethan Zuckerman at 617-253-3962 or user-study@mediacloud.org.
+          </p>
+          <p>
+            If you feel you have been treated unfairly, or you have questions
+            regarding your rights as a research subject, you may contact the Chairman
+            of the Committee on the Use of Humans as Experimental Subjects, M.I.T.,
+            Room E25-143b, 77  Massachusetts Ave, Cambridge, MA 02139, phone 1-617-253-6787.
+          </p>
+          <p>
+            I understand the procedures described above. My questions have been
+            answered to my satisfaction, and I agree to participate in this study.
+          </p>
+        </div>
+        <form action="/" method="post">
+          <div class="text-center">
+            <input type="submit" value="I Agree" class="btn btn-success">
+          </div>
+          <input type="hidden" name="step" value="tutorial">
+        </form>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
