@@ -1,28 +1,12 @@
-# Convite! 
+## Movva
 
-A [MGov](http://mgovbrasil.com.br) é uma startup brasileira comprometida com o impacto social. Nossa plataforma de comunicação para desenvolvimento social impacta mais de 170 mil pessoas no Brasil, e atua também na Europa, África e outros países da América Latina. 
+A Movva é uma startup fundada com a missão de manter estudantes matriculados, engajados e aprendendo. 
 
-Combinando tecnologias simples como o SMS, capazes de engajar aqueles que mais precisam com conceitos de economia comportamental, nossas bibliotecas de apoio à comunicação escolar e educação financeira possuem impacto comprovado. Trabalhamos com gestores públicos, professores, famílias de escolas públicas e beneficiários de programas sociais. 
+E como fazemos isso? Através de uma plataforma de comunicação multimídia e multicanal voltada ao Sucesso do Estudante, que combina poderosos insights comportamentais e inteligência artificial para enviar a melhor mensagem, no momento adequado, para cada perfil de aluno, aumentando os níveis de aprendizagem e engajamento e reduzindo a evasão.
 
-Em 2018, começamos a acelerar o desenvolvimento das bases tecnológicas que vão potencializar nosso impacto de forma exponencial. Uma destas bases é o **primeiro sistema do mundo de inteligência artificial para mudança de comportamento voltada para impacto social**
+Já impactamos 2.5 MI de usuários desde 2019, com mais de 27.5 MI de mensagens por SMS, push notifcation, Facebook Messenger, WhatsApp... no Brasil, Costa do Marfim, Gana, Guatemala, Honduras e Malawi.
 
-A MGov está oferecendo um programa de imersão em tecnologia, buscando **voluntários para trabalhar por 3 meses no desenvolvimento** desse sistema, de **código-aberto** (neste repositório), como parte das nossas equipes de Produto e Tecnologia.
+Empresa B certificada e reconhecida pela MIT Technology Review como a principal inovação social brasileira liderada por jovens de menos de 35 anos. Fomos uma das 10 vencedoras do Prêmio Empreendedor Social da Folha 2020, na categoria Legado Pós-Pandemia. 
 
-## Requisitos técnicos 
-
-- Experiência com desenvolvimento de aplicações usando Django/Python
-- Construção de APIs usando DRF (Django Rest Framework) 
-- Conhecimento de Front-End (HTML, CSS, JavaScript) 
-- Fluxo de trabalho no Github 
-
-## Benefícios
-
-- Oportunidade de aplicar tecnologia para impacto social, mesmo.
-- Experiência com um time de alto nível que combina excelência e propósito.
-- Oportunidade de aprender sobre aplicações de machine learning em educação e finanças sociais. 
-- Reconhecimento no projeto pelas contribuições. 
-
-## Contato: 
-
-Escreva para tmaluta@mgovbrasil.com.br 
-Telegram: [@tiagomaluta](http://t.me/tiagomaluta) 
+Quer fazer parte dessa jornada de impacto? Basta dar uma olhada em nossas vagas:
+https://movva.tech/trabalhe-conosco/
